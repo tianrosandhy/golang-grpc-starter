@@ -1,0 +1,27 @@
+syntax = "proto3";
+
+package protoc;
+
+option go_package = "protob/appointment";
+
+service Appointment {
+  rpc PostAppointment(AppointmentData) returns (AppointmentData) {}
+  rpc GetSingleAppointment (GetAppointmentRequest) returns (AppointmentData) {}
+  rpc GetAllAppointment (GetAppointmentRequest) returns (AppointmentDataCollection) {}
+}
+
+message GetAppointmentRequest {
+  string appointment_id = 1;
+  string appointment_code = 2;
+}
+
+message AppointmentData {
+  string appointment_id = 1;
+  string appointment_code = 2;
+  string patient_id = 3;
+  string email = 4;
+}
+
+message AppointmentDataCollection {
+  repeated AppointmentData data = 1;
+}
